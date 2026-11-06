@@ -2,7 +2,7 @@
 
 Browser-based fictional data generators built with React, Vite and ExcelJS. Each tool has a dedicated URL, user-configurable parameters, previews, pagination, reset, and CSV/XLSX export.
 
-## Current delivery: 103 functional generators
+## Current delivery: 150 functional generators
 
 - Original 10 tools: `src/engine.js`
 - 41 additional tools: `src/expansion.js`
@@ -36,9 +36,9 @@ npm run build
 
 ## Roadmap: 1,000 meaningful tools
 
-The target is 1,000 tools, but **103 are currently implemented**. No placeholders should be counted as working tools.
+The target is 1,000 tools, but **150 are currently implemented**. No placeholders should be counted as working tools.
 
-- Milestone 150: additional QA, HR, and data-processing utilities.
+- Milestone 150: completed — additional QA, HR and data-processing utilities.
 - Milestone 300: financial, operations, and reporting tools plus uploaded-data workflows.
 - Milestone 500: specialized industry calculators, accessibility and large-scale search.
 - Milestone 1,000: all agreed categories with tested business logic and import/export parity.
