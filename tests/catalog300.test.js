@@ -1,3 +1,5 @@
+import {specs9a} from '../src/expansion9a';
+import {specs9b} from '../src/expansion9b';
 import {specs8a} from '../src/expansion8a';
 import {specs8b} from '../src/expansion8b';
 import {specs8c} from '../src/expansion8c';
@@ -11,12 +13,13 @@ import {specs7a} from '../src/expansion7a';
 import {specs7b} from '../src/expansion7b';
 import {specs7c} from '../src/expansion7c';
 import {specs7d} from '../src/expansion7d';
-describe('500-tool milestone',()=>{
- it('has exactly 500 functional tool definitions',()=>expect(specs).toHaveLength(500));
+describe('600-tool milestone',()=>{
+ it('has exactly 600 functional tool definitions',()=>expect(specs).toHaveLength(600));
  it('has 99 distinct phase-6 tools',()=>expect([...specs6a,...specs6b,...specs6c]).toHaveLength(99));
  it('has exactly 100 distinct new tools',()=>{const added=[...specs7a,...specs7b,...specs7c,...specs7d];expect(added).toHaveLength(100);expect(new Set(added.map(s=>s.slug)).size).toBe(100)});
  it('contains exactly 100 distinct phase-eight tools',()=>{const added=[...specs8a,...specs8b,...specs8c,...specs8d];expect(added).toHaveLength(100);expect(new Set(added.map(s=>s.slug)).size).toBe(100)});
- it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(500));
+ it('adds exactly 100 distinct Phase 9 tools',()=>{expect(specs9a).toHaveLength(50);expect(specs9b).toHaveLength(50);const added=[...specs9a,...specs9b];expect(new Set(added.map(t=>t.slug)).size).toBe(100)});
+ it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(600));
  it('has descriptive configuration and matching generated fields',()=>{
  for(const s of specs){
    expect(s.name.length).toBeGreaterThan(8);
