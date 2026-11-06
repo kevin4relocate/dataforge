@@ -8,39 +8,39 @@ const pct=(a,b)=>b?round(a*100/b):0,ratio=(a,b)=>b?round(a/b):0;
 const create=(i,values)=>Object.fromEntries(s.columns.map((col,k)=>[col,k===0?'DF-'+String(i+1).padStart(6,'0'):values[k-1]]));
 if(!Number.isFinite(Number(p.base))||Number(p.base)<=0||Number(p.base)>10000000)throw Error('Scenario input must be positive and within range');
 return Array.from({length:Number(p.count)},(_,i)=>{switch(s.slug){
-case 'requirement-traceability':{let t=Number(p.base),x=0,y=0;x=n(0,t);y=t-x;return create(i,[t,x,y,pct(x,t)] }
-case 'smoke-release-gate':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,t-x,x,x?'Blocked':'Ready'] }
-case 'defect-reopen-ratio':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)] }
-case 'api-error-budget':{let t=Number(p.base),x=0,y=0;x=n(0,Math.min(t,1000));y=Math.floor(t*.01);return create(i,[t,x,y,Math.max(0,y-x)] }
-case 'test-execution-throughput':{let t=Number(p.base),x=0,y=0;x=n(10,400);return create(i,[t,x,ratio(x,t),round(t*60/x)] }
-case 'incident-mttr':{let t=Number(p.base),x=0,y=0;x=n(t*15,t*200);y=ratio(x,t);return create(i,[t,x,y,y<=120?'Yes':'No'] }
-case 'test-automation-savings':{let t=Number(p.base),x=0,y=0;x=t*n(4,20);y=t*n(1,3);return create(i,[t,x,y,x-y] }
-case 'severity-weighted-risk':{let t=Number(p.base),x=0,y=0;x=n(0,30);y=t*5+x*3;return create(i,[t,x,y,y>50?'High':'Normal'] }
-case 'qa-data-completeness':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)] }
-case 'release-deployment-frequency':{let t=Number(p.base),x=0,y=0;x=n(0,t*3);y=ratio(x*7,t);return create(i,[t,x,y,y>=7?'Continuous':'Periodic'] }
-case 'qa-flakiness-exposure':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*.3));return create(i,[t,x,t-x,pct(x,t)] }
-case 'earned-value-index':{let t=Number(p.base),x=0,y=0;x=n(1,t);y=n(1,t);return create(i,[t,x,y,ratio(y,x)] }
-case 'project-task-velocity':{let t=Number(p.base),x=0,y=0;x=n(t*2,t*35);y=ratio(x,t);return create(i,[t,x,y,y>=15?'Fast':'Normal'] }
-case 'portfolio-score':{let t=Number(p.base),x=0,y=0;x=n(1,10);y=n(1,10);return create(i,[t,x,y,round((t*2+x)/y)] }
-case 'wip-capacity-ratio':{let t=Number(p.base),x=0,y=0;x=n(0,t*2);return create(i,[t,x,pct(x,t),x>t?'Yes':'No'] }
-case 'project-overrun-rate':{let t=Number(p.base),x=0,y=0;x=n(Math.floor(t*.6),Math.floor(t*1.5));return create(i,[t,x,x-t,pct(x-t,t)] }
-case 'sprint-predictability':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*1.2));return create(i,[t,x,Math.max(0,t-x),pct(x,t)] }
-case 'scope-creep-tracker':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*.5));return create(i,[t,x,t+x,pct(x,t)] }
-case 'task-estimate-variance':{let t=Number(p.base),x=0,y=0;x=n(1,t*2);return create(i,[t,x,x-t,pct(Math.min(t,x),Math.max(t,x))] }
-case 'stakeholder-response':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)] }
-case 'budget-contingency':{let t=Number(p.base),x=0,y=0;x=n(1000,80000);y=round(x*t/100);return create(i,[t,x,y,x+y] }
-case 'resource-efficiency':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)] }
-case 'operating-profit-ratio':{let t=Number(p.base),x=0,y=0;x=n(1000,t);return create(i,[t,x,t-x,pct(t-x,t)] }
-case 'working-capital-buffer':{let t=Number(p.base),x=0,y=0;x=n(0,t*2);y=t-x;return create(i,[t,x,y,y>0?'Positive':'Deficit'] }
-case 'accounts-collection':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)] }
-case 'investment-payback':{let t=Number(p.base),x=0,y=0;x=n(100,20000);y=ratio(t,x);return create(i,[t,x,y,y<=3?'Fast':'Long'] }
-case 'revenue-growth':{let t=Number(p.base),x=0,y=0;x=n(Math.floor(t*.6),Math.floor(t*1.5));return create(i,[t,x,x-t,pct(x-t,t)] }
-case 'payment-processing-cost':{let t=Number(p.base),x=0,y=0;x=n(100,7000);y=round(x*t/100+.3);return create(i,[t,x,y,round(x-y)] }
-case 'loan-collateral-ratio':{let t=Number(p.base),x=0,y=0;x=n(t,Math.ceil(t*2.5));y=pct(t,x);return create(i,[t,x,y,y>80?'Elevated':'Normal'] }
-case 'tax-exclusive-total':{let t=Number(p.base),x=0,y=0;x=n(100,10000);y=round(x*t/100);return create(i,[t,x,y,round(x+y)] }
-case 'inventory-financing':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(t-x,t)] }
-case 'sales-commission-budget':{let t=Number(p.base),x=0,y=0;x=n(1000,30000);y=round(x*t/100);return create(i,[t,x,y,x-y] }
-case 'gross-profit-per-unit':{let t=Number(p.base),x=0,y=0;x=n(1,t);return create(i,[t,x,t-x,pct(t-x,t)] }
+case 'requirement-traceability':{let t=Number(p.base),x=0,y=0;x=n(0,t);y=t-x;return create(i,[t,x,y,pct(x,t)]) }
+case 'smoke-release-gate':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,t-x,x,x?'Blocked':'Ready']) }
+case 'defect-reopen-ratio':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)]) }
+case 'api-error-budget':{let t=Number(p.base),x=0,y=0;x=n(0,Math.min(t,1000));y=Math.floor(t*.01);return create(i,[t,x,y,Math.max(0,y-x)]) }
+case 'test-execution-throughput':{let t=Number(p.base),x=0,y=0;x=n(10,400);return create(i,[t,x,ratio(x,t),round(t*60/x)]) }
+case 'incident-mttr':{let t=Number(p.base),x=0,y=0;x=n(t*15,t*200);y=ratio(x,t);return create(i,[t,x,y,y<=120?'Yes':'No']) }
+case 'test-automation-savings':{let t=Number(p.base),x=0,y=0;x=t*n(4,20);y=t*n(1,3);return create(i,[t,x,y,x-y]) }
+case 'severity-weighted-risk':{let t=Number(p.base),x=0,y=0;x=n(0,30);y=t*5+x*3;return create(i,[t,x,y,y>50?'High':'Normal']) }
+case 'qa-data-completeness':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)]) }
+case 'release-deployment-frequency':{let t=Number(p.base),x=0,y=0;x=n(0,t*3);y=ratio(x*7,t);return create(i,[t,x,y,y>=7?'Continuous':'Periodic']) }
+case 'qa-flakiness-exposure':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*.3));return create(i,[t,x,t-x,pct(x,t)]) }
+case 'earned-value-index':{let t=Number(p.base),x=0,y=0;x=n(1,t);y=n(1,t);return create(i,[t,x,y,ratio(y,x)]) }
+case 'project-task-velocity':{let t=Number(p.base),x=0,y=0;x=n(t*2,t*35);y=ratio(x,t);return create(i,[t,x,y,y>=15?'Fast':'Normal']) }
+case 'portfolio-score':{let t=Number(p.base),x=0,y=0;x=n(1,10);y=n(1,10);return create(i,[t,x,y,round((t*2+x)/y)]) }
+case 'wip-capacity-ratio':{let t=Number(p.base),x=0,y=0;x=n(0,t*2);return create(i,[t,x,pct(x,t),x>t?'Yes':'No']) }
+case 'project-overrun-rate':{let t=Number(p.base),x=0,y=0;x=n(Math.floor(t*.6),Math.floor(t*1.5));return create(i,[t,x,x-t,pct(x-t,t)]) }
+case 'sprint-predictability':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*1.2));return create(i,[t,x,Math.max(0,t-x),pct(x,t)]) }
+case 'scope-creep-tracker':{let t=Number(p.base),x=0,y=0;x=n(0,Math.floor(t*.5));return create(i,[t,x,t+x,pct(x,t)]) }
+case 'task-estimate-variance':{let t=Number(p.base),x=0,y=0;x=n(1,t*2);return create(i,[t,x,x-t,pct(Math.min(t,x),Math.max(t,x))]) }
+case 'stakeholder-response':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)]) }
+case 'budget-contingency':{let t=Number(p.base),x=0,y=0;x=n(1000,80000);y=round(x*t/100);return create(i,[t,x,y,x+y]) }
+case 'resource-efficiency':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)]) }
+case 'operating-profit-ratio':{let t=Number(p.base),x=0,y=0;x=n(1000,t);return create(i,[t,x,t-x,pct(t-x,t)]) }
+case 'working-capital-buffer':{let t=Number(p.base),x=0,y=0;x=n(0,t*2);y=t-x;return create(i,[t,x,y,y>0?'Positive':'Deficit']) }
+case 'accounts-collection':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(x,t)]) }
+case 'investment-payback':{let t=Number(p.base),x=0,y=0;x=n(100,20000);y=ratio(t,x);return create(i,[t,x,y,y<=3?'Fast':'Long']) }
+case 'revenue-growth':{let t=Number(p.base),x=0,y=0;x=n(Math.floor(t*.6),Math.floor(t*1.5));return create(i,[t,x,x-t,pct(x-t,t)]) }
+case 'payment-processing-cost':{let t=Number(p.base),x=0,y=0;x=n(100,7000);y=round(x*t/100+.3);return create(i,[t,x,y,round(x-y)]) }
+case 'loan-collateral-ratio':{let t=Number(p.base),x=0,y=0;x=n(t,Math.ceil(t*2.5));y=pct(t,x);return create(i,[t,x,y,y>80?'Elevated':'Normal']) }
+case 'tax-exclusive-total':{let t=Number(p.base),x=0,y=0;x=n(100,10000);y=round(x*t/100);return create(i,[t,x,y,round(x+y)]) }
+case 'inventory-financing':{let t=Number(p.base),x=0,y=0;x=n(0,t);return create(i,[t,x,t-x,pct(t-x,t)]) }
+case 'sales-commission-budget':{let t=Number(p.base),x=0,y=0;x=n(1000,30000);y=round(x*t/100);return create(i,[t,x,y,x-y]) }
+case 'gross-profit-per-unit':{let t=Number(p.base),x=0,y=0;x=n(1,t);return create(i,[t,x,t-x,pct(t-x,t)]) }
 default:throw Error('Unknown generator '+s.slug)
 }});
 }
