@@ -3,10 +3,15 @@ import {specs,defaults,generate} from '../src/engine';
 import {specs6a} from '../src/expansion6a';
 import {specs6b} from '../src/expansion6b';
 import {specs6c} from '../src/expansion6c';
-describe('300-tool milestone',()=>{
- it('has exactly 300 functional tool definitions',()=>expect(specs).toHaveLength(300));
+import {specs7a} from '../src/expansion7a';
+import {specs7b} from '../src/expansion7b';
+import {specs7c} from '../src/expansion7c';
+import {specs7d} from '../src/expansion7d';
+describe('400-tool milestone',()=>{
+ it('has exactly 400 functional tool definitions',()=>expect(specs).toHaveLength(400));
  it('has 99 distinct phase-6 tools',()=>expect([...specs6a,...specs6b,...specs6c]).toHaveLength(99));
- it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(300));
+ it('has exactly 100 distinct new tools',()=>{const added=[...specs7a,...specs7b,...specs7c,...specs7d];expect(added).toHaveLength(100);expect(new Set(added.map(s=>s.slug)).size).toBe(100)});
+ it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(400));
  it('has descriptive configuration and matching generated fields',()=>{
  for(const s of specs){
    expect(s.name.length).toBeGreaterThan(8);
