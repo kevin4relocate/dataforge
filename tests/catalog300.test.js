@@ -1,3 +1,5 @@
+import {specs12a} from '../src/expansion12a';
+import {specs12b} from '../src/expansion12b';
 import {specs11a} from '../src/expansion11a';
 import {specs11b} from '../src/expansion11b';
 import {specs10a} from '../src/expansion10a';
@@ -17,15 +19,16 @@ import {specs7a} from '../src/expansion7a';
 import {specs7b} from '../src/expansion7b';
 import {specs7c} from '../src/expansion7c';
 import {specs7d} from '../src/expansion7d';
-describe('800-tool milestone',()=>{
- it('has exactly 800 functional tool definitions',()=>expect(specs).toHaveLength(800));
+describe('900-tool milestone',()=>{
+ it('has exactly 900 functional tool definitions',()=>expect(specs).toHaveLength(900));
  it('has 99 distinct phase-6 tools',()=>expect([...specs6a,...specs6b,...specs6c]).toHaveLength(99));
  it('has exactly 100 distinct new tools',()=>{const added=[...specs7a,...specs7b,...specs7c,...specs7d];expect(added).toHaveLength(100);expect(new Set(added.map(s=>s.slug)).size).toBe(100)});
  it('contains exactly 100 distinct phase-eight tools',()=>{const added=[...specs8a,...specs8b,...specs8c,...specs8d];expect(added).toHaveLength(100);expect(new Set(added.map(s=>s.slug)).size).toBe(100)});
  it('adds exactly 100 distinct Phase 9 tools',()=>{expect(specs9a).toHaveLength(50);expect(specs9b).toHaveLength(50);const added=[...specs9a,...specs9b];expect(new Set(added.map(t=>t.slug)).size).toBe(100)});
  it('adds 100 distinct tools in phase 10',()=>{expect(specs10a).toHaveLength(50);expect(specs10b).toHaveLength(50);expect(new Set([...specs10a,...specs10b].map(x=>x.slug)).size).toBe(100)});
  it('adds 100 uniquely identified Phase 11 generators',()=>{expect(specs11a).toHaveLength(50);expect(specs11b).toHaveLength(50);const recent=[...specs11a,...specs11b];expect(new Set(recent.map(s=>s.slug)).size).toBe(100)});
- it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(800));
+ it('adds 100 unique Phase 12 generators',()=>{expect(specs12a).toHaveLength(50);expect(specs12b).toHaveLength(50);expect(new Set([...specs12a,...specs12b].map(s=>s.slug)).size).toBe(100)});
+ it('contains no duplicate paths or IDs',()=>expect(new Set(specs.map(s=>s.slug)).size).toBe(900));
  it('has descriptive configuration and matching generated fields',()=>{
  for(const s of specs){
    expect(s.name.length).toBeGreaterThan(8);
