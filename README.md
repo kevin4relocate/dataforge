@@ -2,7 +2,7 @@
 
 Browser-based fictional data generators built with React, Vite and ExcelJS. Each tool has a dedicated URL, user-configurable parameters, previews, pagination, reset, and CSV/XLSX export.
 
-## Current delivery: 600 functional generators
+## Current delivery: 700 functional generators
 
 - Original 10 tools: `src/engine.js`
 - 41 additional tools: `src/expansion.js`
@@ -48,7 +48,7 @@ The Sample Contact Data Generator provides these fields together. The existing P
 
 ## Roadmap: 1,000 meaningful tools
 
-The target is 1,000 tools, but **600 are currently implemented**. No placeholders should be counted as working tools.
+The target is 1,000 tools, but **700 are currently implemented**. No placeholders should be counted as working tools.
 
 - Milestone 150: completed — additional QA, HR and data-processing utilities.
 - Milestone 200: completed — calculation and report generators across major business functions.
@@ -56,6 +56,7 @@ The target is 1,000 tools, but **600 are currently implemented**. No placeholder
 - Milestone 400: completed — 100 additional QA, project, financial, sales, HR, operations, educational, support and data-quality calculators.
 - Milestone 500: 500 working generator routes implemented. Accessibility review and large-scale search improvements are not yet complete.
 - Milestone 600: 100 additional generators and reporting calculators implemented. The synthetic-only identity policy and format parity tests remain required.
+- Milestone 700: completed — 100 more tools, maintaining the synthetic sample identity policy and automated CSV/XLSX parity checks.
 - Milestone 1,000: all agreed categories with tested business logic and import/export parity.
 
 Quality gate: tests and build must pass. Full end-to-end browser testing and deployment smoke checks still need to be performed before production certification.
